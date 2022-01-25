@@ -24,15 +24,15 @@ const AddExpenseModal = ({ show, handleClose, defaultBudgetId }) => {
         </Modal.Header>
         <Modal.Body>
           <Form.Group className="mb-3" controlId="description">
-            <Form.Label>Description</Form.Label>;
+            <Form.Label>Description</Form.Label>
             <Form.Control ref={descriptionRef} type="text" required />
           </Form.Group>
           <Form.Group className="mb-3" controlId="amount">
-            <Form.Label>Amount</Form.Label>;
+            <Form.Label>Amount</Form.Label>
             <Form.Control ref={amountRef} type="number" required min={0} step={0.01} />
           </Form.Group>
           <Form.Group className="mb-3" controlId="budgetId">
-            <Form.Label>Budget</Form.Label>;
+            <Form.Label>Budget</Form.Label>
             <Form.Select defaultValue={defaultBudgetId} ref={budgetIdRef}>
               <option id={UNCATEGORIZED_BUDGET_ID}>Uncategorized</option>
               {budgets.map((budget) => (
