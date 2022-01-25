@@ -5,6 +5,8 @@ import BudgetCard from "./components/BudgetCard/BudgetCard.js";
 import AddBudgetModal from "./components/AddBudgetModal/AddBudgetModal.js";
 import AddExpenseModal from "./components/AddExpenseModal/AddExpenseModal.js";
 import { useBudgets } from "./contexts/BudgetContext.js";
+import UncategorizedBudgetCard from "./components/UncategorizedBudgetCard/UncategorizedBudgetCard.js";
+import TotalBudgetCard from "./components/TotalBudgetCard/TotalBudgetCard.js";
 
 function App() {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false);
@@ -51,6 +53,8 @@ function App() {
               />
             );
           })}
+          <UncategorizedBudgetCard />
+          <TotalBudgetCard />
         </div>
       </Container>
       <AddBudgetModal
