@@ -4,13 +4,15 @@ import { useState } from "react";
 import BudgetCard from "./components/BudgetCard/BudgetCard.js";
 import AddBudgetModal from "./components/AddBudgetModal/AddBudgetModal.js";
 import AddExpenseModal from "./components/AddExpenseModal/AddExpenseModal.js";
-import { useBudgets } from "./contexts/BudgetContext.js";
+import ViewExpensesModal from "./components/ViewExpensesModal/ViewExpensesModal.js";
+import { useBudgets, UNCATEGORIZED_BUDGET_ID } from "./contexts/BudgetContext.js";
 import UncategorizedBudgetCard from "./components/UncategorizedBudgetCard/UncategorizedBudgetCard.js";
 import TotalBudgetCard from "./components/TotalBudgetCard/TotalBudgetCard.js";
 
 function App() {
   const [showAddBudgetModal, setShowAddBudgetModal] = useState(false);
   const [showAddExpenseModal, setShowAddExpenseModal] = useState(false);
+  const [viewExpensesModalBudgetId, setViewExpensesModalBudgetId] = useState();
   const [addExpenseModalBudgetId, setAddExpenseModalBudgetId] = useState();
   const { budgets, getBudgetExpenses } = useBudgets();
 
@@ -50,10 +52,16 @@ function App() {
                 amount={amount}
                 max={budget.max}
                 onAddExpenseClick={() => openAddExpenseModal(budget.id)}
+                onViewExpenseClick={() => setViewExpensesModalBudgetId(budget.id)}
               />
             );
           })}
-          <UncategorizedBudgetCard onAddExpenseClick={openAddExpenseModal} />
+          <UncategorizedBudgetCard
+            onAddExpenseClick={openAddExpenseModal}
+            onViewExpenseClick={() =>
+              setViewExpensesModalBudgetId(UNCATEGORIZED_BUDGET_ID)
+            }
+          />
           <TotalBudgetCard />
         </div>
       </Container>
@@ -65,6 +73,10 @@ function App() {
         show={showAddExpenseModal}
         defaultBudgetId={addExpenseModalBudgetId}
         handleClose={() => setShowAddExpenseModal(false)}
+      />
+      <ViewExpensesModal
+        budgetId={viewExpensesModalBudgetId}
+        handleClose={() => setViewExpensesModalBudgetId()}
       />
     </>
   );

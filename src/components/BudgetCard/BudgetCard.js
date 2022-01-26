@@ -8,7 +8,15 @@ const getProgressBarVariant = (amount, max) => {
   return "danger";
 };
 
-const BudgetCard = ({ name, amount, max, gray, onAddExpenseClick, hideButtons }) => {
+const BudgetCard = ({
+  name,
+  amount,
+  max,
+  gray,
+  onAddExpenseClick,
+  hideButtons,
+  onViewExpenseClick,
+}) => {
   const classNames = [];
   if (amount > max) {
     classNames.push("bg-danger", "bg-opacity-10");
@@ -49,7 +57,9 @@ const BudgetCard = ({ name, amount, max, gray, onAddExpenseClick, hideButtons })
               >
                 Add Expense
               </Button>
-              <Button variant="outline-secondary">View Expenses</Button>
+              <Button onClick={onViewExpenseClick} variant="outline-secondary">
+                View Expenses
+              </Button>
             </Stack>
           )}
         </Card.Body>
